@@ -1,0 +1,22 @@
+{
+  "name": "jarvis",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node src/start.js",
+    "dev": "nodemon src/server.js"
+  },
+  "dependencies": {
+    "algorithmia": "^0.3.10",
+    "express": "^4.17.1",
+    "googleapis": "^61.0.0",
+    "ibm-watson": "5.7.0",
+    "readline-sync": "^1.4.10",
+    "sbd": "^1.0.18",
+    "watson-developer-cloud": "^4.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
