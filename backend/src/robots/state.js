@@ -1,18 +1,26 @@
 const fs = require('fs')
-const contentFilePath = './content.json'
+const Content = require('../models/content')
 
-function save(content){
-    return fs.writeFileSync(contentFilePath, JSON.stringify(content))
+async function create() {
+    // const content = await Content.create({
+    //     articleName: 'teste',
+    //     lang: 'pt'
+    // })
+    // return content
+    await Content.delete
 }
 
-function load(){
-    const fileBuffer = fs.readFileSync(contentFilePath, 'utf-8')
-    const contentJson = JSON.parse(fileBuffer)
+async function save(content){
+    await Content.findOneAndUpdate({_id: '5fb84dc17ea431b6434c04e5'}, content)
+}
 
-    return contentJson
+async function load(){
+    const content = await Content.findOne({_id:'5fb84dc17ea431b6434c04e5'})
+    return content
 }
 
 module.exports = {
     save, 
-    load
+    load,
+    create
 }

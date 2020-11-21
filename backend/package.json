@@ -6,12 +6,15 @@
   "scripts": {
     "start": "node src/start.js",
     "dev": "nodemon src/server.js"
+    
   },
   "dependencies": {
     "algorithmia": "^0.3.10",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "googleapis": "^61.0.0",
     "ibm-watson": "5.7.0",
+    "mongoose": "^5.10.15",
     "readline-sync": "^1.4.10",
     "sbd": "^1.0.18",
     "watson-developer-cloud": "^4.0.1"

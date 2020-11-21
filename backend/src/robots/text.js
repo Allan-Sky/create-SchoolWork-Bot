@@ -28,20 +28,20 @@ async function fecthWatsonAndReturnKeyword(sentence) {
 const state = require('./state')
 
 module.exports =  async function robot(){
-    const content = state.load()
+    const content = await state.load()
     await fetchContentFromWikipedia(content)
     sanitizeContent(content)
     breakContentIntoSentences(content)
     limitMaximumSenteces(content)
-    await fecthKeywordsOfAllSentences(content)
+    //await fecthKeywordsOfAllSentences(content)
 
-    state.save(content)
+    await state.save(content)
 
-    async function fecthKeywordsOfAllSentences(content){
-        for(sentence of content.sentences){
-            sentence.keywords = await fecthWatsonAndReturnKeyword(sentence.text)
-        }
-    }
+    // async function fecthKeywordsOfAllSentences(content){
+    //     for(sentence of content.sentences){
+    //         sentence.keywords = await fecthWatsonAndReturnKeyword(sentence.text)
+    //     }
+    // }
 
     async function fetchContentFromWikipedia(content){
         const response = await Algorithmia.client(AlgorithmiaApiKey)
@@ -53,20 +53,18 @@ module.exports =  async function robot(){
 
     function breakContentIntoSentences(content){
         content.sentences = []
-
         const sentences = sbd.sentences(content.sourceContentSanitized)
+        
 
         sentences.forEach((sentece) => {
             content.sentences.push({
                 text: sentece,
-                keywords: [],
-                images: []
             })
         } )
     }
 
     function limitMaximumSenteces(content){
-        content.sentences = content.sentences.slice(0, content.maximumSenteces)
+        content.sentences = content.sentences.slice(0, content.contentmaximumSenteces)
     }
 
     function sanitizeContent(content){
